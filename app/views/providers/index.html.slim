@@ -1,0 +1,5 @@
+-if @providers
+  - @providers.each do |provider|
+    = provider.name
+    br
+=link_to 'New provider', new_provider_path

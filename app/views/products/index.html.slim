@@ -1,0 +1,5 @@
+-if @products
+  - @products.each do |product|
+    = product.name
+    br
+=link_to 'New product', new_product_path

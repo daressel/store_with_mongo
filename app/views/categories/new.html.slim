@@ -1,0 +1,13 @@
+= form_with model: @category do |f|
+  .form-row.mt-2
+    .form-group.col-md-3
+      = f.label :name
+    .form-group.col-md-3
+      = f.text_field :name, class: 'form-control'
+
+  .form-row.mt-2
+    .form-group.col-md-3
+      = f.label :parent
+    .form-group.col-md-3
+      = f.select :parent, @categories, class: 'form-control'
+  = f.submit 'Create', class: 'btn btn-success'

@@ -1,0 +1,9 @@
+.category-list
+  - @categories.each do |cat|    
+    .category data-category=cat.name.gsub(' ', '_')
+      -if cat.childs.any?
+        = cat.name
+        i.fa.fa-caret-right
+      -else
+        = cat.name
+    = cat.child_cat

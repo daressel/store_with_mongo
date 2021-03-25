@@ -4,12 +4,27 @@
     <title>StoreWithMongo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="nav navbar navbar-expand-lg navbar-dark bg-dark rounded-0">
+      <div class="btn btn-secondary mr-5">
+        <%= link_to 'Products', products_path %>
+      </div>
+      <div class="btn btn-secondary mr-5">
+        <%= link_to 'Providers', providers_path %>
+      </div>
+      <div class="btn btn-secondary mr-5">
+        <%= link_to 'Categories', categories_path %>
+      </div>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>    
   </body>
 </html>

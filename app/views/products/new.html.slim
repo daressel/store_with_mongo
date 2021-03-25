@@ -1,0 +1,31 @@
+#new-provider
+  .field.rounded
+    | Имя
+    .form-row
+      .form-group.col-md-6
+        label Название
+        input.form-control#name
+  .field.rounded.mt-5
+    | Поставщик
+    .form-row.mt-2
+      .form-group.col-md-6        
+        select.form-control
+          option selected="" Выбрать поставщика
+          -@providers.each_with_index do |provider, index|
+            option value="#{index}" 
+              =provider
+  .field.rounded.mt-5
+    | Аттрибуты
+    .attributes
+      .form-row.attribute
+        .form-group.col-md-3
+          label Название
+          input.form-control.attr-name
+        .form-group.col-md-3
+          label for='asdasd' Значение
+          input.form-control.attr-value
+        .form-group.col-md-3
+          .btn.btn-danger.delete-attr
+            | Удалить атрибут
+    .btn.btn-secondary.mt-3.add-attr Добавить атрибут
+  .btn.btn-success.float-right.create-provider.mt-5 data-model="/products" Создать товар
