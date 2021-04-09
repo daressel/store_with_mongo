@@ -1,4 +1,4 @@
-#new-provider
+#new-provider data-controller="new-product"
   .field.rounded
     | Имя
     .form-row
@@ -16,16 +16,16 @@
               =provider
   .field.rounded.mt-5
     | Аттрибуты
-    .attributes
+    #attributes
       .form-row.attribute
         .form-group.col-md-3
           label Название
           input.form-control.attr-name
         .form-group.col-md-3
-          label for='asdasd' Значение
+          label Значение
           input.form-control.attr-value
         .form-group.col-md-3
-          .btn.btn-danger.delete-attr
+          .btn.btn-danger data-action="click->new-product#deleteAttr"
             | Удалить атрибут
-    .btn.btn-secondary.mt-3.add-attr Добавить атрибут
-  .btn.btn-success.float-right.create-provider.mt-5 data-model="/products" Создать товар
+    .btn.btn-secondary.mt-3 data-action="click->new-product#addAttr" Добавить атрибут
+  .btn.btn-success.float-right.mt-5 data-model="/products" data-action="click->new-product#createProduct" Создать товар

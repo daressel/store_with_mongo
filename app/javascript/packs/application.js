@@ -29,3 +29,4 @@ import "./categories";
 //= require jquery.turbolinks
 //= require jquery3
 //= require popper
+import "controllers"

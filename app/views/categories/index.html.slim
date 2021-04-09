@@ -1,9 +1,12 @@
-.category-list
-  - @categories.each do |cat|    
-    .category data-category=cat.name.gsub(' ', '_')
-      -if cat.childs.any?
-        = cat.name
-        i.fa.fa-caret-right
-      -else
-        = cat.name
-    = cat.child_cat
+.category-block data-lvl=@max_lvl
+  .category-list data-lvl='1'
+    - @categories.each do |cat|    
+      .category_search data-category=cat.name.gsub(' ', '_')
+        -if cat.childs.any?
+          = cat.name
+          i.fa.fa-caret-right
+        -else
+          = cat.name
+      = cat.child_cat_search
+
+=link_to 'New category', new_category_path

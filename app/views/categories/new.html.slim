@@ -1,13 +1,47 @@
-= form_with model: @category do |f|
-  .form-row.mt-2
-    .form-group.col-md-3
-      = f.label :name
-    .form-group.col-md-3
-      = f.text_field :name, class: 'form-control'
+#new-category data-controller="new-category"
+  .field-new-category.mb-5
+    .form-row.mt-2
+      .form-group.col-md-3
+        label.pt-2 Принадлежит категории
+      .col-md-3
+        input.form-control#parent-text readonly="" onclick="changeForm()"
+    .category-block.form-row.mb-5 data-lvl=@max_lvl
+        .category-list data-lvl='1'
+          - @categories.each do |cat|    
+            .category_new data-category=cat.name.gsub(' ', '_')
+              -if cat.children.any?
+                = cat.name
+                i.fa.fa-caret-right
+              -else
+                = cat.name
+            = cat.child_cat_new
+  .field-new-category.mb-5
+    .form-row.mt-2 
+      .form-group.col-md-3
+        label Название
+        input.form-control#name onclick="changeForm()"
+  .field-new-category.mb-5
+    label style="font-size: initial" Аттрибуты
+    #attributes
+      .form-row.attribute
+        .form-group.col-md-3
+          label Название
+          input.form-control#attr-name onclick="changeForm()"
+        .form-group.col-md-3
+          label Еденица измерения
+          select.form-control#unit
+            option selected=""
+            -@units.each_with_index do |unit, index|
+              option value="#{index}" 
+                =unit
+        .form-group.col-md-3
+          .btn.btn-danger data-action="click->new-category#deleteAttr"
+            | Удалить атрибут
 
-  .form-row.mt-2
-    .form-group.col-md-3
-      = f.label :parent
-    .form-group.col-md-3
-      = f.select :parent, @categories, class: 'form-control'
-  = f.submit 'Create', class: 'btn btn-success'
+    .btn.btn-secondary.mt-3 data-action="click->new-category#addAttr" Добавить атрибут
+  .btn.btn-success.float-right.mt-5 data-model="/categories" data-action="click->new-category#createCategory" Создать категорию
+
+javascript:
+  function changeForm(){
+    event.target.classList.remove('need-to-fill')
+  }

@@ -1,0 +1,14 @@
+.form-row.attribute
+  .form-group.col-md-3
+    label Название
+    input.form-control#attr-name onclick="changeForm()"
+  .form-group.col-md-3
+    label Еденица измерения
+    select.form-control#unit
+      option selected=""
+      -@units.each_with_index do |unit, index|
+        option value="#{index}" 
+          =unit
+  .form-group.col-md-3
+    .btn.btn-danger data-action="click->new-category#deleteAttr"
+      | Удалить атрибут

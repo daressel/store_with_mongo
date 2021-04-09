@@ -1,5 +1,9 @@
--if @products
-  - @products.each do |product|
-    = product.name
-    br
-=link_to 'New product', new_product_path
+div data-controller="hello"
+  -if @products
+    - @products.each do |product|
+      = product.name
+      br
+  =link_to 'New product', new_product_path
+  / - @files.each do |product|
+  /     = product
+  /     br
