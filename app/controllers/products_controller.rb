@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  require 'fileutils'
 
 	def index
     @products = Product.all
@@ -6,6 +7,9 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product = Product.new
+    @categories = Category.where(lvl: 0)
+    @max_lvl = Category.max_lvl
     @providers = []
     Provider.all.each do |provider|
       @providers.push(provider.name)
@@ -13,31 +17,49 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new
-    product.name = params[:name]
-    product.provider_id = Provider.find_by(name: params[:provider]).id.to_s
-    product_attributes = []
-    params[:namesAttr].each_with_index do |name, i|
-      product_attributes.push([name, params[:valuesAttr][i]])
-    end
-    product.product_attributes = product_attributes
-    product.save
-    redirect_to root_path
+    p params['product']
+    category = Category.find_by(name: params['category'])
+    provider = Provider.find_by(name: params['provider'])
+    product = category.products.new
+    product['attrs'] = {}.merge(product_params[:attrs])
+    product['provider'] = provider[:id]
+    product['name'] = params[:name]
+    if product.save
+      product.create_images(params['images'])
+      p 'success save new product'
+      redirect_to root_path
+    else
+      p product.errors.messages
+    end    
   end
 
   def show
+    @product = Product.find(params[:id])
 	end
 
   def edit
+    @product = Product.find(params[:id])
   end
 
   def update
   end 
 
-  def desrtoy
+  def destroy
+    if Product.find(params[:id]).destroy
+      redirect_to root_path
+    else
+      p 'error'
+    end
   end
 
   def new_attr
+    respond_to do |format|
+      format.html { render layout: false }
+    end
+  end
+
+  def attrs_list 
+    @attributes = Category.find_by(name: params['name']).attrs
     respond_to do |format|
       format.html { render layout: false }
     end
@@ -73,4 +95,10 @@ class ProductsController < ApplicationController
     end
     send_file(File.join(Rails.root, 'public/example.docx'))
   end
+  private
+
+   def product_params
+    params.require(:product).permit(:name, images: {}, attrs: {})
+  end
+
 end

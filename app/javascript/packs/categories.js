@@ -22,16 +22,5 @@ $(document).on('turbolinks:load', function() {
     let top = $(this).offset().top;
     $(square).css({top: top, left: left});
   }
-
-  $('.category_new').click(function(){
-    $('#parent-val').val($(this).text());
-    $('#parent-text').val($(this).text());
-    const maxLevel = $(this).closest('.category-block').data('lvl');
-    for(let nextLevel = 1; nextLevel <= maxLevel; nextLevel += 1){
-      Array.from(document.getElementsByClassName('lvl-' + nextLevel)).forEach(el => {
-        $(el).removeClass('active');
-      });
-    }
-  })
 })
 

@@ -2,7 +2,7 @@
   .category-list data-lvl='1'
     - @categories.each do |cat|    
       .category_search data-category=cat.name.gsub(' ', '_')
-        -if cat.childs.any?
+        -if cat.children.any?
           = cat.name
           i.fa.fa-caret-right
         -else

@@ -1,5 +1,5 @@
 import { Controller } from "stimulus"
-import { ajaxRequest, fadeOut, emptyForms } from "../help_methods"
+import { ajaxRequest, fadeOut, emptyForms, fillCategoryName } from "../help_methods"
 
 export default class extends Controller {
   connect() {
@@ -26,16 +26,20 @@ export default class extends Controller {
         method: 'post',
         data: params,
         success: function(response){
-          console.log('success')
+          console.log('success');
+          window.location.pathname = '/products'
         }
       })
     }
   }
 
+  clickCategory(){
+    fillCategoryName('parent-text')
+  }
+
   addAttr(){
     ajaxRequest({
-      url: '/new_attr_category',
-      method: 'get',      
+      url: '/new_attr_category',      
       success: function(response){
         let element = document.getElementById('attributes');
         let tag = document.createElement('div');

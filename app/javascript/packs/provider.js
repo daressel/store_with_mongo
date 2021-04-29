@@ -1,17 +1,6 @@
 $(document).on('turbolinks:load', function() {
   attr_func();
 
-  // $(".add-attr").click(function(){
-  //   $.ajax({
-  //     url: '/new_attr',
-  //     method: 'POST',
-  //     success: function(result){
-  //       $(".attributes").append(result)
-  //       attr_func()
-  //     }
-  //   })
-  // })
-
   $(".create-provider").click(function(){
     let namesArr = [];
     let valuesArr = [];

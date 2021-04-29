@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :categories
 
   get 'new_attr_category' => 'categories#new_attr'
-  post 'new_attr_product' => 'products#new_attr'
+  get 'attrs_list' => 'products#attrs_list'
+  get 'new_attr_product' => 'products#new_attr'
   post 'new_attr_provider' => 'providers#new_attr'
   get 'test_doc' => 'products#test_doc'
 end

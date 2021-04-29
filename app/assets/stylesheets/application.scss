@@ -3,6 +3,7 @@
 @import "font-awesome";
 @import "attributes";
 @import "categories";
+@import "products";
 
 .navbar-expand-lg
 {
@@ -11,4 +12,12 @@
 
 body{
   overflow-y: overlay;
+  background-color: #e8e8e8;
 }
+
+.field
+{
+  box-shadow: 2px 2px 10px 1px;
+  background-color: white;
+}
+

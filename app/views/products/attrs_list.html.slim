@@ -1,0 +1,15 @@
+- if @attributes.any?
+  -@attributes.each do |key, value|
+    .form-row.attribute
+      .form-group.col-md-3
+        label Название
+        input.form-control#attr-name readonly='' value=key
+      .form-group.col-md-3
+        label Единица измерения
+        input.form-control#unit readonly='' value=value
+      .form-group.col-md-3
+        label Значение
+        input.form-control#attr-value
+      / .form-group.col-md-3
+      /   .btn.btn-danger data-action="click->new-product#deleteAttr"
+      /     | Удалить атрибут

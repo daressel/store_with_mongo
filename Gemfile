@@ -30,6 +30,8 @@ gem 'bootstrap', '~> 5.0.0.beta2'
 gem 'jquery-rails'
 gem 'caracal'
 gem 'stimulus-rails'
+gem 'carrierwave'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 #-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 

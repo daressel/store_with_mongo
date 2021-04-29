@@ -1,5 +1,5 @@
 #new-category data-controller="new-category"
-  .field-new-category.mb-5
+  .field.mb-3.p-5.rounded
     .form-row.mt-2
       .form-group.col-md-3
         label.pt-2 Принадлежит категории
@@ -8,19 +8,19 @@
     .category-block.form-row.mb-5 data-lvl=@max_lvl
         .category-list data-lvl='1'
           - @categories.each do |cat|    
-            .category_new data-category=cat.name.gsub(' ', '_')
+            .category_new data-category=cat.name.gsub(' ', '_') data-action='click->new-category#clickCategory'
               -if cat.children.any?
                 = cat.name
                 i.fa.fa-caret-right
               -else
                 = cat.name
-            = cat.child_cat_new
-  .field-new-category.mb-5
+            = cat.child_cat_new('new-category')
+  .field.mb-3.p-5.rounded
     .form-row.mt-2 
       .form-group.col-md-3
         label Название
         input.form-control#name onclick="changeForm()"
-  .field-new-category.mb-5
+  .field.mb-3.p-5.rounded
     label style="font-size: initial" Аттрибуты
     #attributes
       .form-row.attribute
@@ -28,7 +28,7 @@
           label Название
           input.form-control#attr-name onclick="changeForm()"
         .form-group.col-md-3
-          label Еденица измерения
+          label Единица измерения
           select.form-control#unit
             option selected=""
             -@units.each_with_index do |unit, index|

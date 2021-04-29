@@ -14,22 +14,17 @@ class CategoriesController < ApplicationController
   def show
   end
 
-  def create 
-    p params['parent']
-    p params['name']
-    params['attributes'].each do |key, value|
-      p "#{key}, #{value}"
-    end
-    return
-    @category = Category.new(category_params)
-    @parent = Category.find_by(name: category_params[:parent])
-    @category.lvl = @parent.lvl + 1
-    @category.name_view = category_params[:name].gsub(' ', '_')    
-    if @category.save
-      @parent.childs.push(@category.name)
-      @parent.save
+  def create    
+    parent = Category.find_by(name: params['parent'])
+    category = parent.children.new
+    category.attrs = parent['attrs'].merge(params['attributes'])
+    category.lvl = parent['lvl'] + 1
+    category.name = params['name']
+    if category.save
+      p 'success save new category'
+      redirect_to root_path
     else
-      p @category.errors.messages
+      p category.errors.messages
     end
 
   end

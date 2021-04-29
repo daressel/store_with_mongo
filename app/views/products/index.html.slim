@@ -1,9 +1,18 @@
-div data-controller="hello"
-  -if @products
-    - @products.each do |product|
-      = product.name
-      br
+-if @products
+  - @products.each do |product|
+    .field.rounded.row.mb-4
+      .col-lg-3.p-0
+        -if !product.images.empty?
+          = image_tag("/images/uploads/product/#{product.id}/#{product.images[0]}", class: 'rounded-left', style: 'height: 150px')
+        - else
+          = image_tag("/images/uploads/default_image.png", class: 'rounded-left', style: 'height: 150px')
+      .col-lg-9
+        .row.title = product.name
+        .row
+          .col-lg-9
+            =product.attrs_to_s
+          .col-lg-3
+            .btn.btn-success.w-100.mb-1 Добавить в корзину
+            =link_to 'Редактировать', edit_product_path(product), class: 'btn btn-warning w-100 mb-1'
+            =link_to 'Показать', product_path(product), class: 'btn btn-secondary w-100 mb-1'
   =link_to 'New product', new_product_path
-  / - @files.each do |product|
-  /     = product
-  /     br

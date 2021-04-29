@@ -1,31 +1,67 @@
-#new-provider data-controller="new-product"
-  .field.rounded
-    | Имя
-    .form-row
-      .form-group.col-md-6
-        label Название
-        input.form-control#name
-  .field.rounded.mt-5
-    | Поставщик
-    .form-row.mt-2
-      .form-group.col-md-6        
-        select.form-control
-          option selected="" Выбрать поставщика
-          -@providers.each_with_index do |provider, index|
-            option value="#{index}" 
-              =provider
-  .field.rounded.mt-5
-    | Аттрибуты
-    #attributes
-      .form-row.attribute
-        .form-group.col-md-3
+=form_for @product do |f|
+  #new-provider data-controller="new-product"    
+    .field.rounded.p-5
+      | Имя
+      .form-row
+        .form-group.col-md-6
           label Название
-          input.form-control.attr-name
+          input.form-control#name onclick="changeForm()"
+    .field.rounded.mt-3.p-5
+      | Поставщик
+      .form-row.mt-2
+        .form-group.col-md-6        
+          select.form-control#provider onclick="changeForm()"
+            option selected=""
+            -@providers.each_with_index do |provider, index|
+              option value="#{index}" 
+                =provider
+    .field.rounded.mt-3.p-5
+      .form-row.mt-2
         .form-group.col-md-3
-          label Значение
-          input.form-control.attr-value
-        .form-group.col-md-3
-          .btn.btn-danger data-action="click->new-product#deleteAttr"
-            | Удалить атрибут
-    .btn.btn-secondary.mt-3 data-action="click->new-product#addAttr" Добавить атрибут
-  .btn.btn-success.float-right.mt-5 data-model="/products" data-action="click->new-product#createProduct" Создать товар
+          label.pt-2 Принадлежит категории
+        .col-md-3
+          input.form-control#category-name readonly="" onclick="changeForm()"
+      .category-block.form-row.mb-5 data-lvl=@max_lvl
+        .category-list data-lvl='1'
+          - @categories.each do |cat|
+            .category_new data-category=cat.name.gsub(' ', '_') data-action='click->new-product#clickCategory'
+              -if cat.children.any?
+                = cat.name
+                i.fa.fa-caret-right
+              -else
+                = cat.name
+            = cat.child_cat_new('new-product')
+    .field.rounded.mt-3.p-5
+      | Картинки
+      #pictures
+        input#input-pictures name="image" type="file" multiple="true"
+      #preview
+    .field.rounded.mt-3.p-5
+      | Аттрибуты
+      #attributes-category
+      #attributes 
+        .form-row.attribute
+          .form-group.col-md-3
+            label Название
+            input.form-control#attr-name onclick="changeForm()"
+          .form-group.col-md-3
+            label Единица измерения
+            select.form-control#unit onclick="changeForm()"
+              option selected=""
+              -@units.each_with_index do |unit, index|
+                option value="#{index}" 
+                  =unit
+          .form-group.col-md-3
+            label Значение
+            input.form-control#attr-value onclick="changeForm()"
+          .form-group.col-md-3
+            .btn.btn-danger data-action="click->new-product#deleteAttr"
+              | Удалить атрибут
+      .btn.btn-secondary.mt-3 data-action="click->new-product#addAttr" Добавить атрибут  
+    / =f.submit 'Some', data: {action: "click->new-product#createProduct"}
+    .btn.btn-success.mt-3.float-right data-action="click->new-product#createProduct" Создать продукт
+  
+javascript:
+  function changeForm(){
+    event.target.classList.remove('need-to-fill')
+  }

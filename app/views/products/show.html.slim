@@ -1,5 +1,25 @@
-| 1231232131
-.asdasdad#asdasdasds
-#adasdasda.asdqwqd
-#asdasd
-.qweda.asd
+.field.rounded.row.mb-4
+  .col-lg-3.p-0
+    #carouselExampleIndicators.carousel.slide data-ride="carousel" 
+      - if @product.images.count > 1
+        ol.carousel-indicators
+          -@product.images.each_with_index do |image, index|
+            -if index == 0
+              li.active data-slide-to=index data-target="#carouselExampleIndicators" 
+            -else
+              li data-slide-to=index data-target="#carouselExampleIndicators" 
+        .carousel-inner
+          -@product.images.each_with_index do |image, index|
+            -if index == 0
+              .carousel-item.active
+                img.d-block.w-100 src="/images/uploads/#{@product.class.to_s.downcase}/#{@product.id}/#{image}" style='height: 150px'
+            -else
+              .carousel-item
+                img.d-block.w-100 src="/images/uploads/#{@product.class.to_s.downcase}/#{@product.id}/#{image}" style='height: 150px'
+        a.carousel-control-prev data-slide="prev" href="#carouselExampleIndicators" role="button" 
+          span.carousel-control-prev-icon aria-hidden="true" 
+          span.sr-only Previous
+        a.carousel-control-next data-slide="next" href="#carouselExampleIndicators" role="button" 
+          span.carousel-control-next-icon aria-hidden="true" 
+          span.sr-only Next
+
