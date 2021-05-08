@@ -1,8 +1,10 @@
 class ProductsController < ApplicationController
   require 'fileutils'
+  skip_before_action :authorized, only: [:index]
 
 	def index
     @products = Product.all
+    p current_user
     # @files = Dir["public/*.docx"]
   end
 
@@ -63,6 +65,12 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { render layout: false }
     end
+  end
+
+  def test_remote
+    p 123123123132
+    p params
+    p 123123123132
   end
 
   def test_doc

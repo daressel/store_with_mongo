@@ -1,8 +1,9 @@
-#new-provider
-  .field.rounded
-    | Имя
-    .form-row
-      .form-group.col-md-6
-        label Название
-        input.form-control#name
-  .btn.btn-success.float-right.create-provider.mt-5 data-model="/providers" Создать поставщика
+#new-provider.text-light
+  =form_for @provider do |provider|
+    .field.rounded.p-5
+      h3 Имя
+      .form-row
+        .form-group.col-md-6
+          = provider.label :name, "Название"
+          = provider.text_field :name, class: 'form-control'
+    =provider.submit 'Создать поставщика', class: 'btn btn-success float-right mt-5'

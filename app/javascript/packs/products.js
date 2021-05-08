@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {  
-  $("#input-pictures").change(function(e) {    
+  $("#input-pictures").change(function(e) {
     $("#preview").empty();
     var storedFiles = [];
     var files = e.target.files;
@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function() {
       if (!f.type.match("image.*")) {
         return;
       }
-      storedFiles.push(f);      
+      storedFiles.push(f);
       var reader = new FileReader();
       reader.onload = function(e) {
         var html = `<div style='display: inline-block;'><img src=${e.target.result} data-file=${f.name} ' class='selFile' title='Click to remove' style='height: 150px'></div>`;
@@ -17,4 +17,16 @@ $(document).on('turbolinks:load', function() {
       reader.readAsDataURL(f);
     })
   })
+  $('#showSideMenu').on('click', function() {
+    $('body').addClass('inaction');
+    $('body').css({'overflow':'hidden'});
+    $('.sideMenu').addClass('show');
+  })
+
+  $('.closeSideMenu').on('click', function() {
+    $('.sideMenu').removeClass('show');
+    $('body').removeClass('inaction');
+    $('body').css({'overflow':'auto'});
+  })
+  
 })

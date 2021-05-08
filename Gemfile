@@ -23,15 +23,18 @@ gem 'jbuilder', '~> 2.7'
 # Установленные мной
 #-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 gem "mongoid", git: 'git@github.com:mongodb/mongoid.git'
+gem 'bcrypt'
 gem 'slim'
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
-gem 'bootstrap', '~> 5.0.0.beta2'
+gem 'bootstrap', '~> 5.0.0.beta3'
 gem 'jquery-rails'
 gem 'caracal'
 gem 'stimulus-rails'
 gem 'carrierwave'
+gem 'betterlorem'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+gem 'simple_form'
 #-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 

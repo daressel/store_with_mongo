@@ -39,7 +39,7 @@ class Product
       if value[1] == 'без единицы измерения'
         "#{name} - #{value[0]}"
       else 
-        "#{name} - #{value[0]}(#{value[1]})"
+        "#{name} - #{value[0]} #{value[1]}"
       end
     }.join('; ')
   end

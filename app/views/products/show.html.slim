@@ -1,25 +1,51 @@
-.field.rounded.row.mb-4
+.field.rounded.row.mb-4.text-light
   .col-lg-3.p-0
-    #carouselExampleIndicators.carousel.slide data-ride="carousel" 
+    #carouselImages.carousel.slide data-ride="carousel" 
       - if @product.images.count > 1
         ol.carousel-indicators
           -@product.images.each_with_index do |image, index|
             -if index == 0
-              li.active data-slide-to=index data-target="#carouselExampleIndicators" 
+              li.active data-slide-to=index data-target="#carouselImages" 
             -else
-              li data-slide-to=index data-target="#carouselExampleIndicators" 
+              li data-slide-to=index data-target="#carouselImages" 
         .carousel-inner
           -@product.images.each_with_index do |image, index|
             -if index == 0
               .carousel-item.active
-                img.d-block.w-100 src="/images/uploads/#{@product.class.to_s.downcase}/#{@product.id}/#{image}" style='height: 150px'
+                img.d-block.w-100.img-fluid src="/images/uploads/#{@product.class.to_s.downcase}/#{@product.id}/#{image}"
             -else
               .carousel-item
-                img.d-block.w-100 src="/images/uploads/#{@product.class.to_s.downcase}/#{@product.id}/#{image}" style='height: 150px'
-        a.carousel-control-prev data-slide="prev" href="#carouselExampleIndicators" role="button" 
+                img.d-block.w-100.img-fluid src="/images/uploads/#{@product.class.to_s.downcase}/#{@product.id}/#{image}"
+        a.carousel-control-prev data-slide="prev" href="#carouselImages" role="button" 
           span.carousel-control-prev-icon aria-hidden="true" 
           span.sr-only Previous
-        a.carousel-control-next data-slide="next" href="#carouselExampleIndicators" role="button" 
+        a.carousel-control-next data-slide="next" href="#carouselImages" role="button" 
           span.carousel-control-next-icon aria-hidden="true" 
           span.sr-only Next
-
+      - elsif @product.images.count == 1
+        = image_tag("/images/uploads/product/#{product.id}/#{product.images[0]}", class: 'rounded-left', style: 'height: 155px')
+      - else
+        = image_tag("/images/uploads/default_image.png", class: 'mx-auto d-block', style: 'height: 150px')
+  .col-lg-8
+    .d-flex.justify-content-between
+      div
+        p Поставщик
+        = link_to @product.provider.name, provider_path(@product.provider)
+      div 
+        p Категория
+        = link_to @product.category.name, category_path(@product.category)
+.field.rounded.row.mb-4.p-5.text-light
+  h3.mb-5 
+    | Характеристики
+    '
+    =@product.name
+  table.table.table-striped.text-light
+    -@product.attrs.each do |name, value|
+      tr
+        td
+          =name
+        td
+          =value[0]
+          -if value[1] != 'без единицы измерения'
+            '
+            =value[1]

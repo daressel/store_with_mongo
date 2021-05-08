@@ -41,8 +41,8 @@ export function fadeOut(el) {
 export function emptyForms(){
   let arr = Array.from(document.getElementsByClassName('form-control'))  
   arr.forEach(element => {
-    if(element.value == ''){ element.classList.add('need-to-fill') }
-    else{ element.classList.remove('need-to-fill') }      
+    if(element.value == ''){ element.classList.add('is-invalid') }
+    else{ element.classList.remove('is-invalid') }      
   })
   if(arr.some(isErr) || arr.some(isTrue)) {  
     alert('Заполните необходимые поля');   
