@@ -8,7 +8,7 @@ development:
 production:
   clients:
     default:
-      database: store_with_mongo_development
+      database: store_with_mongo_production
       hosts:
         - localhost:27017
 
