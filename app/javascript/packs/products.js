@@ -28,5 +28,4 @@ $(document).on('turbolinks:load', function() {
     $('body').removeClass('inaction');
     $('body').css({'overflow':'auto'});
   })
-  
 })

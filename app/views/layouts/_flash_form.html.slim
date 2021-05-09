@@ -1,16 +1,12 @@
 -flash.each do |type, message|
   -case type
   -when 'error'
-    -message.each do |key, value|
-      .d-flex.justify-content-center
-        .alert.alert-danger.text-center
-          =key
-          '
-          =value[0]
+    / -message.each do |key, value|
+    .d-flex.justify-content-center
+      .alert.alert-danger.text-center
+        =message
   -when 'warning'
-    -message.each do |key, value|
-      .d-flex.justify-content-center
-        .alert.alert-warning.text-center
-          =key
-          '
-          =value[0]
+    / -message.each do |key, value|
+    .d-flex.justify-content-center
+      .alert.alert-warning.text-center
+        =message

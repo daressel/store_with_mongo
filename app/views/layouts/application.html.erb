@@ -11,11 +11,11 @@
   </head>
 
   <body class='bg-gradient'>    
-    <div class="nav navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <% if logged_in? %>
+    <div class="nav navbar navbar-expand-lg navbar-dark bg-dark fixed-top">     
         <button class="navbar-toggler" id='showSideMenu' type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
+       <% if logged_in? %>
         <div class="collapse navbar-collapse">
           <%= link_to 'Products', products_path, class: "btn btn-dark" %>
           <%= link_to 'Providers', providers_path, class: "btn btn-dark" %>

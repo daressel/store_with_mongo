@@ -11,10 +11,10 @@ class Authentication::SessionController < ApplicationController
         session[:user_id] = @user.id
         redirect_to products_path
       else  
-        redirect_to login_path
+        redirect_to login_path, warning: 'Неверный пароль'
       end
     rescue
-      redirect_to login_path
+      redirect_to login_path, error: 'Пользоватьеля с таким именем нет'
     end
   end
 

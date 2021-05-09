@@ -23,7 +23,7 @@
           span.carousel-control-next-icon aria-hidden="true" 
           span.sr-only Next
       - elsif @product.images.count == 1
-        = image_tag("/images/uploads/product/#{product.id}/#{product.images[0]}", class: 'rounded-left', style: 'height: 155px')
+        = image_tag("/images/uploads/product/#{@product.id}/#{@product.images[0]}", class: 'rounded-left', style: 'height: 155px')
       - else
         = image_tag("/images/uploads/default_image.png", class: 'mx-auto d-block', style: 'height: 150px')
   .col-lg-8

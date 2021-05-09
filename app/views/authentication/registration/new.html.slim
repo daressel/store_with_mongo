@@ -1,0 +1,12 @@
+-if flash
+  = render 'layouts/flash_form'
+.d-flex.justify-content-center
+  = form_with model: @user, url: registration_index_path, html: { class: 'text-center text-light bg-dark rounded p-5' } do |f|
+    h3 = label_tag "Регистрация"
+    = f.label "Имя пользователя"
+    = f.text_field :username, class: 'form-control mb-3', placeholder: "Имя пользователя"
+    = f.label "Пароль"
+    = f.password_field :password, class: 'form-control mb-3', placeholder: "Пароль"
+    = f.password_field :password_confirmation, class: 'form-control', placeholder: "Подтверждение пароля"
+    .mt-3
+      .float-right = submit_tag "Создать", class: 'btn btn-success'

@@ -23,4 +23,3 @@ $(document).on('turbolinks:load', function() {
     $(square).css({top: top, left: left});
   }
 })
-
