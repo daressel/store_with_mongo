@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '2.7.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.7'
 
 # Установленные мной
 #-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-gem "mongoid", git: 'git@github.com:mongodb/mongoid.git'
+gem "mongoid"
 gem 'bcrypt'
 gem 'slim'
 gem 'bootstrap-sass'
@@ -35,6 +35,7 @@ gem 'carrierwave'
 gem 'betterlorem'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'simple_form'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 #-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 
