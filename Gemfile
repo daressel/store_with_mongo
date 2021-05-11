@@ -35,6 +35,7 @@ gem 'carrierwave'
 gem 'betterlorem'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'simple_form'
+gem 'figaro'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 #-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
