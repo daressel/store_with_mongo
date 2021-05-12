@@ -1,0 +1,25 @@
+div Для подтверждения регистрации перейдите по ссылке
+br
+=link_to confirm_email_registration_url(@user.confirm_token), confirm_email_registration_url(@user.confirm_token), class: 'confirm_link'
+br
+br
+
+css:
+  a.confirm_link
+  {
+    margin-top: 15px;
+    border: 2px solid #198754;
+    border-radius: 5px;
+    padding: 7px;
+    text-align: center;
+    color: #198754;
+    font-style: italic;
+    font-size: larger;
+  }
+
+  a.confirm_link:hover
+  {
+    cursor: pointer;
+    color: white;
+    background-color: #198754;
+  }

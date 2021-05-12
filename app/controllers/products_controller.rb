@@ -1,11 +1,14 @@
 class ProductsController < ApplicationController
   require 'fileutils'
-  skip_before_action :authorized, only: [:index]
+  skip_before_action :authorized, only: [:index, :test_doc]
 
 	def index
     @products = Product.all
     p current_user
     # @files = Dir["public/*.docx"]
+    # require "docx"  
+    # docx = Caracal::Document.new("/public/example.docx")
+    # p docx.iframe data: File.read('example.docx')
   end
 
   def new
@@ -68,17 +71,12 @@ class ProductsController < ApplicationController
   end
 
   def test_remote
-    p 123123123132
-    p params
-    p 123123123132
+    
   end
 
   def test_doc
-    p '-=-=-=-=-=-=-=-=-=-=-=-='
-    p params
-    p true
-    p '-=-=-=-=-=-=-=-=-=-=-=-='
-    return 123123123
+    # TestEmailMailer.notify_user(User.first).deliver
+    # return
     Caracal::Document.save 'public/example.docx' do |docx|
       # page 1
       docx.h1 'Page 1 Header'

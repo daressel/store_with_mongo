@@ -6,10 +6,18 @@ class Authentication::SessionController < ApplicationController
 
   def create
     begin
-      @user = User.find_by(username: params[:username])
+      if params[:login].include?('@')
+        @user = User.find_by(email: params[:login])
+      else
+        @user = User.find_by(username: params[:login])
+      end
       if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
-        redirect_to products_path
+        if @user.email_confirmed
+          session[:user_id] = @user.id
+          redirect_to products_path
+        else
+          redirect_to login_path, error: 'Пожалуйста, активируйте свою учетную запись, следуя инструкциям, которые были отправлени на ваш email'
+        end
       else  
         redirect_to login_path, warning: 'Неверный пароль'
       end

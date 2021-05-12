@@ -10,3 +10,8 @@
     .d-flex.justify-content-center
       .alert.alert-warning.text-center
         =message
+  -when 'success'
+    / -message.each do |key, value|
+    .d-flex.justify-content-center
+      .alert.alert-success.text-center
+        =message

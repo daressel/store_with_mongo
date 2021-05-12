@@ -3,6 +3,8 @@
 .d-flex.justify-content-center
   = form_with model: @user, url: registration_index_path, html: { class: 'text-center text-light bg-dark rounded p-5' } do |f|
     h3 = label_tag "Регистрация"
+    = f.label "Почта"
+    = f.email_field :email, class: 'form-control mb-3', placeholder: "Почта"
     = f.label "Имя пользователя"
     = f.text_field :username, class: 'form-control mb-3', placeholder: "Имя пользователя"
     = f.label "Пароль"

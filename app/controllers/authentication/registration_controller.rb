@@ -1,5 +1,5 @@
 class Authentication::RegistrationController < ApplicationController
-  skip_before_action :authorized, :only => [:new, :create]
+  skip_before_action :authorized, :only => [:new, :create, :confirm_email]
 
   def new
     @user = User.new
@@ -9,7 +9,8 @@ class Authentication::RegistrationController < ApplicationController
     @user = User.create(registration_params)
     if @user.valid?
       @user.save
-      redirect_to login_path, notice: 'Вы были успешно зарегестрированы.'
+      ConfirmRegistrationMailer.notify_user(@user).deliver
+      redirect_to login_path, success: 'Вы были успешно зарегестрированы. Проверьте письмо, которое было прислано на Ваш email'
     else  
       redirect_to registrations_path, error: @user.errors
     end
@@ -19,9 +20,20 @@ class Authentication::RegistrationController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def confirm_email
+    user = User.find_by(confirm_token: params[:id])
+    if user
+      user.email_activate
+      redirect_to login_path, success: 'Ваша учетная запись успешно подтверждена'
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_path
+    end
+  end
+
   private
 
   def registration_params
-    params.require(:user).permit(:username, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 end

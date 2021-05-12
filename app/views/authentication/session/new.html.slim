@@ -4,7 +4,7 @@
   = form_tag session_index_path, class: 'text-center text-light bg-dark rounded p-5' do
     h3 = label_tag "Авторизация"
     = label_tag "Имя пользователя"
-    = text_field_tag :username, nil, class: 'form-control mb-3', placeholder: "Имя пользователя"
+    = text_field_tag :login, nil, class: 'form-control mb-3', placeholder: "Почту или никнейм"
     = label_tag "Пароль"
     = password_field_tag :password, nil, class: 'form-control', placeholder: "Пароль"
     .mt-3
