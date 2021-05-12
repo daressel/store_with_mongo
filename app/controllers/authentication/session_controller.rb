@@ -22,7 +22,7 @@ class Authentication::SessionController < ApplicationController
         redirect_to login_path, warning: 'Неверный пароль'
       end
     rescue
-      redirect_to login_path, error: 'Пользоватьеля с таким именем нет'
+      redirect_to login_path, error: { login: ['Пользоватьеля с таким логином нет']}
     end
   end
 

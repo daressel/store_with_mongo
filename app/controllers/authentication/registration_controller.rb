@@ -26,7 +26,7 @@ class Authentication::RegistrationController < ApplicationController
       user.email_activate
       redirect_to login_path, success: 'Ваша учетная запись успешно подтверждена'
     else
-      flash[:error] = "Sorry. User does not exist"
+      flash[:error] = "Извинте, данный пользователь не существует"
       redirect_to root_path
     end
   end
