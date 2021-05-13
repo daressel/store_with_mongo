@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   require 'fileutils'
-  skip_before_action :authorized, only: [:index, :test_doc]
+  skip_before_action :authorized, only: [:index, :test_doc, :show]
 
 	def index
     @products = Product.all
@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
       redirect_to root_path
     else
       p product.errors.messages
-    end    
+    end
   end
 
   def show

@@ -14,12 +14,11 @@ class Product
   field :sell_price,            type: Float
   field :buy_price,             type: Float
   
-
   belongs_to :provider
   belongs_to :category
 
   before_destroy :delete_image_folder
-  after_save :create_image_folder
+  after_create :create_image_folder
 
   # validates :name, :buy_price, :attrs, :sell_price, presence: true
   def create_images(images)
@@ -35,7 +34,7 @@ class Product
   end
 
   def attrs_to_s
-    self.attrs.collect {|name, value| 
+    self.attrs.collect {|name, value|
       if value[1] == 'без единицы измерения'
         "#{name} - #{value[0]}"
       else 

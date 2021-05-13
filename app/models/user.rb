@@ -11,10 +11,14 @@ class User
 
   has_secure_password
 
+  has_one :shopping_cart, dependent: :destroy
+  has_many :orders, dependent: :destroy
+
   validates :username, :email, presence: true, uniqueness: true
   validates :password, presence: true
 
   before_create :confirmation_token
+  after_create :create_shopping_cart
 
   def confirmation_token
     if self.confirm_token.blank?
@@ -36,5 +40,20 @@ class User
   def set_forgot_nil
     self.forgot_token = nil
     save!(:validate => false)
+  end
+
+  def create_shopping_cart
+    self.shopping_cart = ShoppingCart.create
+    save!(:validate => false)
+  end
+
+  def test_products
+    category = Category.find_by(lvl: 0)
+    20.times do |index|
+      product = category.products.new
+      product.name = "#{index}product"
+      product.provider = Provider.first.id
+      product.save
+    end
   end
 end

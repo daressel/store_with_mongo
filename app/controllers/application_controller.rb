@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def authorized
-    redirect_to login_path unless logged_in?
+  def authorized    
+    redirect_to login_path, warning: 'Необходимо авторизоваться' unless logged_in?
   end
 
   def units
