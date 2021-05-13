@@ -1,5 +1,5 @@
 class Authentication::RegistrationController < ApplicationController
-  skip_before_action :authorized, :only => [:new, :create, :confirm_email]
+  skip_before_action :authorized, :only => [:new, :create]
 
   def new
     @user = User.new
@@ -20,15 +20,7 @@ class Authentication::RegistrationController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def confirm_email
-    user = User.find_by(confirm_token: params[:id])
-    if user
-      user.email_activate
-      redirect_to login_path, success: 'Ваша учетная запись успешно подтверждена'
-    else
-      flash[:error] = "Извинте, данный пользователь не существует"
-      redirect_to root_path
-    end
+  def forgot_password
   end
 
   private

@@ -7,6 +7,7 @@ class User
   field :password_digest
   field :email_confirmed,  type: Boolean, default: false
   field :confirm_token
+  field :forgot_token
 
   has_secure_password
 
@@ -21,9 +22,19 @@ class User
     end
   end
 
+  def set_forgot_token
+    self.forgot_token = SecureRandom.urlsafe_base64.to_s
+    save!(:validate => false)
+  end
+
   def email_activate
     self.email_confirmed = true
     self.confirm_token = nil
+    save!(:validate => false)
+  end
+
+  def set_forgot_nil
+    self.forgot_token = nil
     save!(:validate => false)
   end
 end

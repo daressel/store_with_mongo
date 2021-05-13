@@ -8,5 +8,5 @@
     = label_tag "Пароль"
     = password_field_tag :password, nil, class: 'form-control', placeholder: "Пароль"
     .mt-3
-      .float-left = link_to 'Забыли пароль', '#'
+      .float-left = link_to 'Забыли пароль', forgot_password_path
       .float-right = submit_tag "Войти", class: 'btn btn-success'

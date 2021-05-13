@@ -3,16 +3,19 @@ Rails.application.routes.draw do
   root to: 'products#index'
   resources :products
   resources :providers
-  # get 'categories/:name', to: 'categories#show', as: :category
   resources :categories
 
   scope module: 'authentication' do
-    resources :registration, except: [:index, :new] do
-      member do
-        get :confirm_email
-      end
+    resources :registration, except: [:index, :new] do  
     end
     resources :session, only: [:create, :destroy]
+    get '/confirm_email/:id', to: 'confirm#confirm_email', as: 'confirm_email'
+
+    get '/forgot_password', to: 'forgot_password#forgot_password', as: 'forgot_password'
+    post 'send_mail', to: 'forgot_password#send_mail'
+    get '/new_password/:id', to: 'forgot_password#new_password', as: 'new_password'
+    post '/new_password/:id', to: 'forgot_password#create_new_password'
+      
     get "/login", to: "session#new"
     get "/registrations", to: "registration#new"
   end

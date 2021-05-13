@@ -16,7 +16,7 @@ class Authentication::SessionController < ApplicationController
           session[:user_id] = @user.id
           redirect_to products_path
         else
-          redirect_to login_path, error: 'Пожалуйста, активируйте свою учетную запись, следуя инструкциям, которые были отправлени на ваш email'
+          redirect_to login_path, error: { login: ['Пожалуйста, активируйте свою учетную запись, следуя инструкциям, которые были отправлени на ваш email']}
         end
       else  
         redirect_to login_path, warning: 'Неверный пароль'
