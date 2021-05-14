@@ -1,10 +1,10 @@
 -if @products
   - @products.each do |product|
-    .field.rounded.row.mb-4.d-flex
+    .field.rounded.row.mb-4.d-flex data-product=product.id
       .col-lg-3.p-0
         =link_to product_path(product) do
           -if !product.images.empty?
-            = image_tag("/images/uploads/product/#{product.id}/#{product.images[0]}", class: 'rounded-left img-fluid mx-auto d-block')            
+            = image_tag("/images/uploads/product/#{product.id}/#{product.images[0]}", class: 'rounded-left img-fluid mx-auto d-block')
           - else
             = image_tag("/images/uploads/default_image.png", class: 'rounded-left img-fluid mx-auto d-block')
       .col-lg-9.text-light
@@ -14,7 +14,10 @@
           .col-lg-9.mt-1
             =product.attrs_to_s
           .col-lg-3
-            / .btn.btn-secondary.w-100.mb-1 Добавить в корзину
             =link_to 'Редактировать', edit_product_path(product), class: 'btn btn-secondary w-100 mb-1'
             =link_to 'Показать', product_path(product), class: 'btn btn-secondary w-100 mb-1'
+            - if @products_in_cart.include?(product.id.to_s)
+              .btn.btn-secondary.w-100.mb-1.cart_btn Убрать из корзины
+            - else
+              .btn.btn-secondary.w-100.mb-1.cart_btn Добавить в корзину
   =link_to 'New product', new_product_path

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :products
   resources :providers
   resources :categories
+  resources :shopping_carts, only: :show
 
   scope module: 'authentication' do
     resources :registration, except: [:index, :new] do  
@@ -20,7 +21,10 @@ Rails.application.routes.draw do
     get "/registrations", to: "registration#new"
   end
 
-
+  post 'add_to_cart', to: 'shopping_carts#add_to_cart'
+  post 'remove_from_cart', to: 'shopping_carts#remove_from_cart'
+  post 'clear_cart', to: 'shopping_carts#clear_cart'
+  
   get 'new_attr_category', to: 'categories#new_attr'
   get 'attrs_list', to: 'products#attrs_list'
   get 'new_attr_product', to: 'products#new_attr'
