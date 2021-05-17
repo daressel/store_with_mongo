@@ -31,6 +31,8 @@ $(document).on('turbolinks:load', function() {
 
   $('.cart_btn').on('click', function(e){
     let product = $(this).closest('.field').data('product');
+    let product_block = $(this).closest('.field');
+    let price = ($(product_block).find('#price').text())
     let target = e.target;
     let url = '';
     let text = '';
@@ -45,7 +47,7 @@ $(document).on('turbolinks:load', function() {
     $.ajax({
       url: url,
       method: 'POST',
-      data: { id: product },
+      data: { id: product, price: price },
       success: function(response){
         $(target).text(text);
         if (response.quantity > 0){

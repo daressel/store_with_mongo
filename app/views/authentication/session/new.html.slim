@@ -1,6 +1,6 @@
 -if flash
   = render 'layouts/flash_form'
-.d-flex.justify-content-center
+.justify-content-center.vertical-center
   = form_tag session_index_path, class: 'text-center text-light bg-dark rounded p-5' do
     h3 = label_tag "Авторизация"
     = label_tag "Имя пользователя"
@@ -10,3 +10,10 @@
     .mt-3
       .float-left = link_to 'Забыли пароль', forgot_password_path
       .float-right = submit_tag "Войти", class: 'btn btn-success'
+css:
+  .vertical-center {
+    min-height: 70vh; /* These two lines are counted as one :-)       */
+
+    display: flex;
+    align-items: center;
+  }

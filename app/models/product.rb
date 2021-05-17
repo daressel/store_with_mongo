@@ -11,7 +11,7 @@ class Product
   field :images,                type: Array,   default: []
   field :count,                 type: Integer
   field :attrs,                 type: Hash,    default: {}
-  field :sell_price,            type: Float
+  field :price,                 type: Float
   field :buy_price,             type: Float
   
   belongs_to :provider

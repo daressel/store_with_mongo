@@ -37,6 +37,9 @@
         input#input-pictures name="image" type="file" multiple="true"
       #preview
     .field.rounded.mt-3.p-5
+      label Цена
+      input.form-control#price onclick="changeForm()"
+    .field.rounded.mt-3.p-5
       | Аттрибуты
       #attributes-category
       #attributes 
@@ -57,8 +60,7 @@
           .form-group.col-md-3
             .btn.btn-danger data-action="click->new-product#deleteAttr"
               | Удалить атрибут
-      .btn.btn-secondary.mt-3 data-action="click->new-product#addAttr" Добавить атрибут  
-    / =f.submit 'Some', data: {action: "click->new-product#createProduct"}
+      .btn.btn-secondary.mt-3 data-action="click->new-product#addAttr" Добавить атрибут
     .btn.btn-success.mt-3.float-right data-action="click->new-product#createProduct" Создать продукт
   
 javascript:

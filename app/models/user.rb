@@ -53,6 +53,7 @@ class User
       product = category.products.new
       product.name = "#{index}product"
       product.provider = Provider.first.id
+      product.price = 150
       product.save
     end
   end

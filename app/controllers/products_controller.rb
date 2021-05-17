@@ -5,11 +5,13 @@ class ProductsController < ApplicationController
 	def index
     @products = Product.all
     user = current_user
-    shopping_cart = user.shopping_cart
     @products_in_cart = []
-    shopping_cart.products.each do |product_id, count|
-      @products_in_cart.push(product_id)
-    end
+    if user
+      shopping_cart = user.shopping_cart
+      shopping_cart.products.each do |product_id, count|
+        @products_in_cart.push(product_id)
+      end
+    end    
     # @files = Dir["public/*.docx"]
     # require "docx"  
     # docx = Caracal::Document.new("/public/example.docx")

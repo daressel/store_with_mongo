@@ -8,8 +8,14 @@
           - else
             = image_tag("/images/uploads/default_image.png", class: 'rounded-left img-fluid mx-auto d-block')
       .col-lg-9.text-light
-        .col-lg-9.justify-content-center
-          h3.text-center.m-0= link_to product.name, product_path(product), class: 'text-light', style: 'text-decoration: none;'
+        .row
+          .col-lg-9.justify-content-center
+            h3.text-center.m-0= link_to product.name, product_path(product), class: 'text-light', style: 'text-decoration: none;'
+          .col-lg-3.justify-content-center.text-center
+            .fs-3.d-inline-block#price=product.price
+            '
+            .fs-3.d-inline-block
+              | рублей
         .row
           .col-lg-9.mt-1
             =product.attrs_to_s
