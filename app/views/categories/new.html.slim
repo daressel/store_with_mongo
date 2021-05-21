@@ -5,16 +5,9 @@
         label.pt-2 Принадлежит категории
       .col-md-3
         input.form-control#parent-text readonly="" onclick="changeForm()"
-    .category-block.form-row.mb-5 data-lvl=@max_lvl
-        .category-list data-lvl='1'
-          - @categories.each do |cat|    
-            .category_new data-category=cat.name.gsub(' ', '_') data-action='click->new-category#clickCategory'
-              -if cat.children.any?
-                = cat.name
-                i.fa.fa-caret-right
-              -else
-                = cat.name
-            = cat.child_cat_new('new-category')
+    ul.top-level-menu.w-25
+      - @categories.each do |cat|
+        =cat.categories
   .field.mb-3.p-5.rounded
     .form-row.mt-2 
       .form-group.col-md-3

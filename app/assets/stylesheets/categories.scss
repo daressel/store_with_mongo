@@ -1,28 +1,6 @@
-.square
-{  
-  position: absolute;
-  visibility: hidden;  
-}
-
-.active
-{
-  visibility: visible;
-}
-
 .active-tab
 {
   background-color: #cccccc;
-}
-
-.category-list
-{
-  cursor: pointer;
-  width: 200px;
-  border-radius: 5px;
-  /*color: #343a40;*/
-  border: 1px solid black;
-  z-index: 1;
-  background-color: #6c757d;
 }
 
 .fa-caret-right
@@ -30,21 +8,6 @@
   float: right;
   padding-right: 5px;
   padding-top: 3px
-}
-
-.category_new,
-.category_search
-{  
-  border: 2px;
-  padding: 15px;
-  -webkit-transition: background-color 0.15s ease-in-out;
-}
-
-.category_new:hover,
-.category_search:hover
-{
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .need-to-fill

@@ -15,41 +15,16 @@ class Category
   
   # validates :name, :parent, :parents_path, :lvl, presence: true
 
-  def child_cat_new(type_model) # рекурсивная функция
-    str = ''
-    if self.children.any? 
-      str = "<div class='square category-list lvl-#{self.lvl + 1}' id=#{self.name.gsub(' ', '_')} data-lvl=#{self.lvl + 1}>"
+  def categories
+    str = "<li>#{self.name}</li>"
+    if self.children.any?
+      str = "<li>#{self.name}<i class='fa fa-caret-right p-0'></i>"
+      str += "<ul class='childs-menu'>"
       self.children.each do |child|
-        if child.children.any? # если есть подкатегории, то добавить стрелочку
-          str += "<div class='category_new' data-category=#{child.name.gsub(' ', '_')} data-action='click->#{type_model}#clickCategory'>#{child.name}<i class='fa fa-caret-right'></i></div>"
-        else # иначе просто названеие
-          str += "<div class='category_new' data-category=#{child.name.gsub(' ', '_')} data-action='click->#{type_model}#clickCategory'>#{child.name}</div>"
-        end
+        str += child.categories
       end
-      str += "</div>"
-      self.children.each do |child|
-        str += child.child_cat_new(type_model)
-      end
-    end    
-    str.html_safe
-  end
-
-  def child_cat_search# рекурсивная функция
-    str = ''
-    if self.children.any? 
-      str = "<div class='square category-list lvl-#{self.lvl + 1}' id=#{self.name.gsub(' ', '_')} data-lvl=#{self.lvl + 1}>"
-      self.children.each do |child|
-        if child.children.any? # если есть подкатегории, то добавить стрелочку
-          str += "<div class='category_search' data-category=#{child.name.gsub(' ', '_')}>#{child.name}<i class='fa fa-caret-right'></i></div>"
-        else # иначе просто названеие
-          str += "<div class='category_search' data-category=#{child.name.gsub(' ', '_')}>#{child.name}</div>"
-        end
-      end
-      str += "</div>"
-      self.children.each do |child|
-        str += child.child_cat_search
-      end
-    end    
+      str += "</ul></li>"
+    end
     str.html_safe
   end
 

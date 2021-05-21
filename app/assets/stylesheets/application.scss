@@ -79,3 +79,51 @@ i.fa:active{
   height: 24px;
 }
 
+
+
+
+
+
+
+
+
+
+
+.childs-menu
+{
+  position: absolute;
+  top: 0px;
+  right: -150px;
+  width: 150px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+}
+
+.childs-menu > li
+{
+  position: relative;
+  height: 30px;
+  background: #999999;
+}
+.childs-menu > li:hover { background: #CCCCCC; }
+
+
+.top-level-menu > li:hover { background: #CCCCCC; }
+
+.top-level-menu li:hover > ul
+{
+    /* On hover, display the next level's menu */
+  display: inline;
+}
+.top-level-menu a:hover { color: #000000; }
+
+.top-level-menu > li
+{
+  position: relative;
+  float: left;
+  height: 30px;
+  width: 150px;
+  background: #999999;
+}
